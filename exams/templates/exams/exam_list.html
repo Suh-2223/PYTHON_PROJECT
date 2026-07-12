@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Exams</title>
+</head>
+<body>
+
+    <h1>Available Exams</h1>
+
+    {% if exams %}
+        <table border="1" cellpadding="10">
+            <tr>
+                <th>Exam Title</th>
+                <th>Subject</th>
+                <th>Total Marks</th>
+                <th>Duration</th>
+                <th>Action</th>
+            </tr>
+
+            {% for exam in exams %}
+            <tr>
+                <td>{{ exam.title }}</td>
+                <td>{{ exam.subject }}</td>
+                <td>{{ exam.total_marks }}</td>
+                <td>{{ exam.duration }} minutes</td>
+                <td>
+                    <a href="{% url 'attempt_exam' exam.id %}">Start Exam
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    {% else %}
+        <h3>No Exams Available</h3>
+    {% endif %}
+
+    <br><br>
+
+    <a href="{% url 'student_dashboard' %}">
+        <button>Back to Dashboard</button>
+    </a>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Exam Submitted</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    height:100vh;
+    background:linear-gradient(135deg,#020617,#0f172a,#1e3a8a);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+.container{
+
+    width:450px;
+    text-align:center;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    padding:50px;
+    border-radius:25px;
+    box-shadow:0 0 30px rgba(59,130,246,.4);
+
+}
+
+
+.icon{
+    font-size:70px;
+    margin-bottom:20px;
+}
+
+
+h1{
+    color:#60a5fa;
+    margin-bottom:15px;
+}
+
+
+p{
+    color:#dbeafe;
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+
+.btn{
+
+    display:inline-block;
+    text-decoration:none;
+    background:#2563eb;
+    color:white;
+    padding:12px 30px;
+    border-radius:10px;
+
+}
+
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="icon">
+✅
+</div>
+
+
+<h1>Exam Submitted Successfully!</h1>
+
+
+<p>
+Your response has been recorded successfully.
+</p>
+
+
+<a href="{% url 'student_dashboard' %}" class="btn">
+Back to Dashboard
+</a>
+
+
+</div>
+
+
+</body>
+</html>

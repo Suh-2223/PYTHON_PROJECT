@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available Exams</title>
+    <style>
+        table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button {
+            padding: 6px 12px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkblue;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Available Exams</h2>
+
+<table>
+    <tr>
+        <th>Exam ID</th>
+        <th>Exam Name</th>
+        <th>Subject</th>
+        <th>Total Marks</th>
+        <th>Duration</th>
+        <th>Action</th>
+    </tr>
+
+    {% for exam in exams %}
+    <tr>
+        <td>{{ exam.id }}</td>
+        <td>{{ exam.title }}</td>
+        <td>{{ exam.subject }}</td>
+        <td>{{ exam.total_marks }}</td>
+        <td>{{ exam.duration }} Minutes</td>
+        <td>
+            <a href="{% url 'attempt_exam' exam.id %}">
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="6">No exams available.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

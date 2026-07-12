@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Available Exams</title>
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#020617,#0f172a,#1e3a8a);
+    color:white;
+}
+
+header{
+    background:#0f172a;
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.4);
+}
+
+header h1{
+    color:#60a5fa;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    background:#2563eb;
+    padding:10px 18px;
+    border-radius:8px;
+}
+
+.back-btn:hover{
+    background:#1d4ed8;
+}
+
+.container{
+    width:90%;
+    margin:40px auto;
+}
+
+.title{
+    text-align:center;
+    font-size:35px;
+    margin-bottom:35px;
+    color:white;
+}
+
+.exam-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 0 20px rgba(59,130,246,.4);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 30px rgba(59,130,246,.7);
+}
+
+.card h2{
+    color:#60a5fa;
+    margin-bottom:15px;
+}
+
+.card p{
+    margin:10px 0;
+    color:#d1d5db;
+}
+
+.start-btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 22px;
+    background:#10b981;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.start-btn:hover{
+    background:#059669;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🎓 Online Examination System</h1>
+
+<a href="{% url 'student_dashboard' %}" class="back-btn">
+Dashboard
+</a>
+
+</header>
+
+<div class="container">
+
+<h1 class="title">Available Exams</h1>
+
+<div class="exam-grid">
+
+{% for exam in exams %}
+
+<div class="card">
+
+<h2>{{ exam.title }}</h2>
+
+<p><strong>Subject:</strong> {{ exam.subject }}</p>
+
+<p><strong>Total Marks:</strong> {{ exam.total_marks }}</p>
+
+<p><strong>Duration:</strong> {{ exam.duration }} Minutes</p>
+
+<a href="{% url 'attempt_exam' exam.id %}" class="start-btn">
+Start Exam
+</a>
+
+</div>
+
+{% empty %}
+
+<div class="card">
+<h2>No Exams Available</h2>
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Register</title>
+
+<style>
+body{
+    height:100vh;
+    background:linear-gradient(135deg,#020617,#0f172a,#1e3a8a);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Segoe UI',sans-serif;
+    color:white;
+}
+
+.container{
+    width:400px;
+    padding:40px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+}
+
+h1{
+    text-align:center;
+    color:#60a5fa;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+    border:none;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
+
+a{
+    color:#60a5fa;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎓 Student Register</h1>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<input type="text" name="username" placeholder="Username" required>
+
+<input type="email" name="email" placeholder="Email" required>
+
+<input type="password" name="password" placeholder="Password" required>
+
+<input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+<button type="submit">
+Register
+</button>
+
+</form>
+
+<p>
+Already registered?
+<a href="{% url 'student_login' %}">
+Login
+</a>
+</p>
+
+</div>
+
+</body>
+</html>
