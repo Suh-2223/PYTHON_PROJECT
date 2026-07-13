@@ -7,26 +7,40 @@ from django.shortcuts import get_object_or_404
 from django.contrib import messages
 
 
+from django.contrib import messages
+from django.contrib.auth.models import User
+
 def register(request):
     if request.method == 'POST':
         username = request.POST['username']
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
         email = request.POST['email']
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
 
-        if password == confirm_password:
-            User.objects.create_user(
-                username=username,
-                first_name=first_name,
-                last_name=last_name,
-                email=email,
-                password=password
-            )
-            return redirect('student_register')
+        if password != confirm_password:
+            messages.error(request, "Passwords do not match.")
+            return redirect("student_register")
 
-    return render(request, 'students/register.html')
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already exists.")
+            return redirect("student_register")
+
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email already exists.")
+            return redirect("student_register")
+
+        User.objects.create_user(
+            username=username,
+            email=email,
+            password=password
+        )
+
+        messages.success(request, "Registration successful. Please login.")
+        return redirect("student_login")
+
+    return render(request, "students/register.html")
+
+
 
 def student_login(request):
     if request.method == "POST":
@@ -38,7 +52,7 @@ def student_login(request):
         if user is not None:
             login(request, user)
             return redirect("student_dashboard")
-        
+    
 
     return render(request, "students/login.html")
 
