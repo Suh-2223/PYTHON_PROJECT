@@ -1,4 +1,7 @@
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
+
+import exams
 from .models import Exam, Question, Result
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -91,3 +94,9 @@ def view_exams(request):
     exams = Exam.objects.all()
     return render(request, 'exams/view_exams.html', {'exams':exams})
 
+def create_admin(request):
+    if not User.objects.filter(username="admin").exists():
+        User.objects.create_superuser(username="admin", email="admin@example.com", password="Admin@123")
+
+        return HttpResponse("Superuser created successfully.")
+    return HttpResponse("Superuser already exists.")
