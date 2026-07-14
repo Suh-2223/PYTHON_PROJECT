@@ -25,7 +25,6 @@ urlpatterns = [
     path('students/', include('students.urls')),
     path('faculty/', include('faculty.urls')),
     path('exams/', include('exams.urls')),
-    path('create_admin/', exam_views.create_admin, name='create_admin'),
 
 ]
 
