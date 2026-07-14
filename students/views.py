@@ -5,9 +5,6 @@ from accounts.views import view_exams
 from exams.models import Exam,Question, Result
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
-
-
-from django.contrib import messages
 from django.contrib.auth.models import User
 
 def register(request):
@@ -35,10 +32,11 @@ def register(request):
             password=password
         )
 
-        messages.success(request, "Registration successful. Please login.")
+        messages.success(request, "Student registered successfully.")
         return redirect("student_login")
 
     return render(request, "students/register.html")
+       
 
 
 
